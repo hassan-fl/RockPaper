@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Barlow Semi Condensed";
+  box-sizing: border-box;
+}
+
+body {
+  background-image: radial-gradient(
+    circle at top,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%)
+  );
+  height: 100vh;
+  padding-top: 2rem;
+
+  overflow: hidden;
+}
+#roor {
+  height: inherit;
+}
+
+.cardS {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border: 3px solid hsl(217, 16%, 45%);
+  border-radius: 20px;
+  margin: auto;
+}
+.Titl {
+  color: #fff;
+  display: grid;
+  grid-template-rows: repeat(3, 40px);
+  row-gap: 0.3rem;
+  & > * {
+    font-weight: 600;
+    font-size: 4rem;
+    height: 100%;
+    margin-top: -15px;
+  }
+}
+
+.CubeS {
+  width: fit-content;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 1rem 4rem;
+}
+.scoreT {
+  color: hsl(229, 64%, 46%);
+  letter-spacing: 0.2ch;
+  margin-bottom: -20px;
+}
+.NumScore {
+  color: hsl(229, 25%, 31%);
+  font-size: 6rem;
+  font-weight: bold;
+}
+
+/*For the Rules*/
+.Rlbtn {
+  all: unset;
+  color: #fff;
+  letter-spacing: 0.15ch;
+
+  outline: 2px solid hsl(217, 16%, 45%);
+  border-radius: 8px;
+  padding: 0.6rem 2rem;
+
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+/*Header Of PopUp */
+.hdPop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.PopUp {
+  width: fit-content;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2.6rem 3.5rem;
+  display: grid;
+  row-gap: 1.5rem;
+
+  transform-origin: center bottom;
+  scale: 0;
+  transform: translateY(300%);
+  animation: popshow 0.4s 0.1s ease-in forwards;
+
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+
+  h1 {
+    color: hsl(229, 25%, 31%);
+    font-weight: bold;
+    letter-spacing: 0.1ch;
+  }
+}
+/*For The black opacity behind popup*/
+.blackBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000080;
+}
+@keyframes popshow {
+  to {
+    scale: 1;
+    transform: translateY(0%);
+  }
+}
+
+/*Choose*/
+.choose {
+  width: fit-content;
+  margin: 17rem auto;
+  position: relative;
+}
+/*For Hide the foundation of Choose*/
+.hideChoosing {
+  animation: hide 0.8s 0.1s ease-in;
+}
+@keyframes hiding {
+  to {
+    scale: 0;
+  }
+}
+/*Your circle*/
+.scissor {
+  --color-side: hsl(39, 89%, 49%);
+  --color-circle: hsl(40, 84%, 53%);
+}
+.rock {
+  --color-side: hsl(349, 71%, 52%);
+  --color-circle: hsl(349, 70%, 56%);
+}
+.paper {
+  --color-side: hsl(230, 89%, 62%);
+  --color-circle: hsl(230, 89%, 65%);
+}
+/*If Not In Competetion */
+.scissor.outComp {
+  right: 0;
+  top: 0;
+  transform: translateX(50%) translateY(-50%);
+}
+.rock.outComp {
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+}
+.paper.outComp {
+  left: 0;
+  top: 0;
+  transform: translateX(-50%) translateY(-50%);
+}
+/*If InComptetion */
+.scissor.inComp,
+.rock.inComp,
+.paper.inComp {
+  --width: 350px;
+  --inside-width: 270px;
+  transform: translateX(-27%) translateY(-20%);
+  scale: 0;
+  animation: showing 0.4s 0.7s ease-in-out forwards;
+}
+/*ShowIng Circle when the picked be on his place*/
+
+/*animation fo showing of the choices*/
+@keyframes showing {
+  to {
+    scale: 1;
+  }
+}
+
+.circle {
+  --width: 200px;
+  --inside-width: 150px;
+  width: var(--width);
+  aspect-ratio: 1/ 1;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: var(--color-circle);
+
+  display: grid;
+  place-content: center;
+
+  position: absolute;
+  z-index: 10;
+}
+.circle img {
+  width: calc(var(--width) * 0.3);
+}
+.circle div {
+  background-color: #fff;
+  width: var(--inside-width);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+
+  position: relative;
+  z-index: 10;
+}
+/* .circle::after {
+  content: "";
+  position: absolute;
+
+  bottom: 0;
+  right: 0;
+  transform: translateY(6%);
+  width: var(--width);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--color-side);
+} */
+
+/*Picking Time*/
+.picking {
+  width: 75%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/*picked bar wher the chanllenge*/
+.pickedBar {
+  display: grid;
+  place-items: center;
+  row-gap: 15rem;
+  color: #fff;
+  place-items: center;
+  margin-top: 4rem;
+  transition: 0.6s 0.1s ease-in;
+  opacity: 0;
+}
+
+.leftOne {
+  transform: translateX(-200%);
+}
+.rightOne {
+  transform: translateX(200%);
+}
+.animatePicker {
+  animation: showPick 0.6s 0.1s ease-in-out forwards;
+}
+/*animation for showing the the choices*/
+@keyframes showPick {
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+/*The element OF the Result of Competition*/
+.result {
+  width: fit-content;
+  display: grid;
+  place-items: center;
+  row-gap: 0.5rem;
+  align-self: flex-end;
+  margin-right: -2rem;
+
+  h1 {
+    color: #fff;
+    font-size: 4.5rem;
+    font-weight: 800;
+  }
+}
+.again {
+  all: unset;
+  width: 100%;
+  background-color: #fff;
+  color: hsl(229, 25%, 31%);
+  font-weight: 600;
+  letter-spacing: 0.15ch;
+  font-size: 1.5rem;
+  text-align: center;
+
+  border-radius: 8px;
+
+  padding: 1rem 2rem;
+
+  &:hover {
+    color: hsl(349, 71%, 52%);
+  }
+}
